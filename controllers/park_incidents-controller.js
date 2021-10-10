@@ -21,8 +21,14 @@ exports.getList = (request, response, next) => {
         });
 };
 */
-exports.getList = (request, response, next) => {
+exports.addIncident = (request, response, next) => {
     response.render('add_incidents',  {
+        titulo: "Menú",
+    });
+};
+
+exports.getIncident = (request, response, next) => {
+    response.render('incident_list',  {
         titulo: "Menú",
     });
 };

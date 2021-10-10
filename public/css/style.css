@@ -1,0 +1,21 @@
+.page-footer, nav{
+    background-color: rgb(53, 63, 63);
+}
+body{
+    font-family: 'Rubik', sans-serif;
+}
+
+#button, #enviar{
+    color: white;
+    background-color: rgb(170, 63, 63);
+    text-align: center;
+}
+
+label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#drop1, #drop2{
+    background-color: rgb(187, 157, 60);
+}

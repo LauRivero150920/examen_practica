@@ -5,14 +5,12 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-const bootstrap = require('bootstrap');
-
 //! token protection
 // const csrf = require('csurf');
 // const csrfProtection = csrf();
 
 //! rutas
-const rutasName = require('./routes/name');
+const rutasParque = require('./routes/park_incidents-routes');
 
 const path = require('path');
 
@@ -53,7 +51,7 @@ app.use((request, response, next) => {
 });*/
 
 //! rutas
-//* app.use('/ruta_default', rutasName);
+app.use('/park_incidents', rutasParque);
 // app.use('/users', rutasUsers);
 
 app.use((request, response, next) => {

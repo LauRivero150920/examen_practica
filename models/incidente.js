@@ -13,10 +13,10 @@ module.exports = class Incidente {
     }
     
     static fetchPlaces(){
-        return db.execute('SELECT nombre FROM lugares');
+        return db.execute('SELECT * FROM lugares ORDER BY nombre ASC');
     }
 
     static fetchTypes(){
-        return db.execute('SELECT descripcion FROM tipos');
+        return db.execute('SELECT * FROM tipos');
     }
 }

@@ -31,11 +31,12 @@
                 <label for="tipos">Tipo de Incidente: </label>
                 <select name="tipos" id="tipos">
                     <option disabled selected>Seleccione un Tipo...</option>
+                    
                     <% if (lista_lugares.length > 0) { %>
                         <% for (let lugar of lista_lugares) { %>
                             <option value="<%= lugar.id%>"><%= lugar.nombre%></option>
                         <%}%>
-                    <%}%> 
+                    <%}%>
                 </select>
                 <a class="waves-effect waves-light btn" id="add_type" href="/types/addType">
                     Agregar Tipo

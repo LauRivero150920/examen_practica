@@ -2,7 +2,7 @@
     <%- include('includes/nav.ejs') %>
     <h3 style="text-align: center;"><%= titulo %></h3>
     <div class="row">
-        <div class="col s6 m6 offset-m1 l5 offset-l2">
+        <div class="col s6 m6 offset-m1 l6 offset-l1">
             <form action="/park_incidents/add" method="POST">
                 <label for="hora">Hora del Incidente: </label>
                 <br>
@@ -14,24 +14,32 @@
                 <br />
                 <br />
 
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-trigger btn' href='#' data-target='dropdown1' id="drop1">Lugar</a>
-
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="/places/addPlace">Agregar Nuevo</a></li>
-                </ul>
+                <label for="lugares">Lugar del Incidente: </label>
+                <select name="lugares" id="lugares">
+                    <option disabled selected>Seleccione un Lugar...</option>
+                    <% if (lista_lugares.length> 0) { %>
+                        <% for (let lugar of lista_lugares) { %>
+                            <option value="<%= lugar.id%>"><%= lugar.nombre%></option>
+                        <%}%>
+                    <%}%> 
+                </select>
+                <a class="waves-effect waves-light btn" id="add_place" href="/places/addPlace">
+                    Agregar Lugar
+                </a>
                 <br><br>
 
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-trigger btn' href='#' data-target='dropdown2' id="drop2">Tipo de Incidente</a>
-
-                <!-- Dropdown Structure -->
-                <ul id='dropdown2' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="/types/addType">Agregar Nuevo</a></li>
-                </ul>
+                <label for="tipos">Tipo de Incidente: </label>
+                <select name="tipos" id="tipos">
+                    <option disabled selected>Seleccione un Tipo...</option>
+                    <% if (lista_lugares.length > 0) { %>
+                        <% for (let lugar of lista_lugares) { %>
+                            <option value="<%= lugar.id%>"><%= lugar.nombre%></option>
+                        <%}%>
+                    <%}%> 
+                </select>
+                <a class="waves-effect waves-light btn" id="add_type" href="/types/addType">
+                    Agregar Tipo
+                </a>
                 <br><br>
 
                 <a class="waves-effect waves-light btn" id="button">
@@ -39,14 +47,13 @@
                 </a>
             </form>
         </div>
-        <div class="col s6 m3 l3">
-            <br><br><br>
-            <img src="/images/dino.png" style="text-align: center; vertical-align: middle;">
+        <div class="col s6 m3 l5">
+            <br><br><br><br>
+            <img src="/images/dino.png" style="text-align: center; vertical-align: middle; width: 100%;">
         </div>
     </div>
 </main>
 <script type="text/javascript" src="/js/materialize.min.js"></script>
 <script>M.AutoInit();</script>
 </body>
-<br><br><br><br><br>
 <%- include('includes/footer.ejs') %>

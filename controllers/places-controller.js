@@ -20,3 +20,19 @@ exports.postPlace = (request, response, next) => {
             response.status(302).redirect('/error');
         });
 };
+
+exports.getList = (request, response, next) => {
+    Lugar.fetchAll(request.params.nombre)
+        .then(([rows, fieldData]) => {
+            response.render('lista_menu',  {
+                titulo: "Menú",
+                isLoggedIn: request.session.isLoggedIn,
+                username: request.session.username,
+                lista_platillos: rows,
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            response.status(302).redirect('/error');
+        });
+};

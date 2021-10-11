@@ -1,6 +1,11 @@
 <%- include('includes/head.ejs') %>
     <%- include('includes/nav.ejs') %>
-    <h3 style="text-align: center;"><%= titulo %></h3>
+    <h3 style="text-align: center;">
+        <%= titulo %>
+        <span class="material-icons" style="font-size: 40px; vertical-align: middle;">
+            my_location
+        </span>
+    </h3>
     <div class="row">
         <div class="col s6 m6 offset-m1 l8 offset-l3">
             <form action="/places/addPlace" method="POST">

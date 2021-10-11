@@ -5,16 +5,20 @@ module.exports = class Incidente {
         this.nombre = mi_nombre;
     }
     save() {
-        return db.execute('INSERT INTO lugares (nombre) VALUES (?)',
+        return db.execute('INSERT INTO incidentes (nombre) VALUES (?)',
             [this.nombre]);
     }
-    /*
-    static fetchAll(id) {
-        if(id === undefined){
-            return db.execute('SELECT * FROM data_base ORDER BY nombre ASC');
-        }
-        else{
-            return db.execute('SELECT * FROM data_base WHERE id = ?', [id]);
-        }
-    }*/
+    static fetchAll() {
+        let places = db.execute('SELECT nombre FROM lugares');
+        let types = db.execute('SELECT descripcion FROM tipos');
+        return [places, types];
+    }
+    
+    static fetchPlaces(){
+        return db.execute('SELECT nombre FROM lugares');
+    }
+
+    static fetchTypes(){
+        return db.execute('SELECT descripcion FROM tipos');
+    }
 }

@@ -17,9 +17,18 @@ exports.addIncident = (request, response, next) => {
 };
 
 exports.getIncident = (request, response, next) => {
-    response.render('incident_list',  {
-        titulo: "Listado de Incidentes",
-    });
+    Incident.fetchAll()
+        .then(([rows, fieldData]) => {
+            console.log(rows);
+            response.render('incident_list',  {
+                titulo: "Listado de Incidentes",
+                lista_incidentes: rows,
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            response.status(302).redirect('/error');
+        });
 };
 
 exports.postAdd = (request, response, next) => {

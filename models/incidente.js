@@ -9,9 +9,7 @@ module.exports = class Incidente {
             [this.nombre]);
     }
     static fetchAll() {
-        let places = db.execute('SELECT nombre FROM lugares');
-        let types = db.execute('SELECT descripcion FROM tipos');
-        return [places, types];
+        return db.execute('SELECT* FROM incidentes I, lugares L, tipos T WHERE I.lugar_incidente = L.id AND I.tipo_incidente = T.id ORDER BY fecha DESC')
     }
     
     static fetchPlaces(){

@@ -1,4 +1,4 @@
-const { fetchAll } = require('../models/lugar'); // Imortar el fetch all del modelo del modelo
+const { fetchAll } = require('../models/lugar');
 const Lugar = require('../models/lugar');
 
 

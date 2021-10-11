@@ -33,8 +33,6 @@ exports.getIncident = (request, response, next) => {
     });
 };
 
-
-// Método de inserción
 exports.getAdd = (request, response, next) => {
     if (!request.session.isLoggedIn) {
         return response.redirect('/users/login');

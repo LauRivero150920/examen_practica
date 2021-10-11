@@ -11,6 +11,7 @@ const session = require('express-session');
 
 //! rutas
 const rutasParque = require('./routes/park_incidents-routes');
+const rutasLugar = require('./routes/places-routes');
 
 const path = require('path');
 
@@ -52,6 +53,7 @@ app.use((request, response, next) => {
 
 //! rutas
 app.use('/park_incidents', rutasParque);
+app.use('/places', rutasLugar);
 // app.use('/users', rutasUsers);
 
 app.use((request, response, next) => {

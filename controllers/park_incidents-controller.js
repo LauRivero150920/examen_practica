@@ -23,15 +23,16 @@ exports.getList = (request, response, next) => {
 */
 exports.addIncident = (request, response, next) => {
     response.render('add_incidents',  {
-        titulo: "Menú",
+        titulo: "Agregar Incidente",
     });
 };
 
 exports.getIncident = (request, response, next) => {
     response.render('incident_list',  {
-        titulo: "Menú",
+        titulo: "Listado de Incidentes",
     });
 };
+
 
 // Método de inserción
 exports.getAdd = (request, response, next) => {
@@ -49,7 +50,7 @@ exports.getAdd = (request, response, next) => {
 // Método de inserción
 exports.postAdd = (request, response, next) => {
     response.setHeader('Set-Cookie', 'ultimo_platillo='+request.body.nombre+ ';HttpOnly');
-    const platillo = new Platillo(request.body.nombre, request.body.descripcion, request.body.imagen);
+    const lugar = new Platillo(request.body.nombre, request.body.descripcion, request.body.imagen);
     platillo.save()
         .then(([rows, fieldData]) => {
             response.status(302).redirect('/menu/list');

@@ -8,6 +8,7 @@ const router = express.Router();
 router.get('/add', incidentsController.addIncident);
 
 router.get('/list', incidentsController.getIncident);
+
 /*
 router.get('/logout', incidentsController.getLogout);
 

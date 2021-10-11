@@ -4,11 +4,19 @@ const { fetchPlaces } = require('../models/incidente');
 
 exports.addIncident = (request, response, next) => {
     Incident.fetchPlaces()
-        .then(([rows, fieldData]) => {
-            response.render('add_incidents',  {
-                titulo: "Agregar Incidente",
-                lista_lugares: rows,
-            });
+        .then(([rows1, fieldData]) => {
+            Incident.fetchTypes()
+                .then(([rows2, fieldData]) => {
+                    response.render('add_incidents',  {
+                        titulo: "Agregar Incidente",
+                        lista_lugares: rows1,
+                        lista_tipos: rows2,
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    response.status(302).redirect('/error');
+                });
         })
         .catch(err => {
             console.log(err);

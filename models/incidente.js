@@ -17,6 +17,6 @@ module.exports = class Incidente {
     }
 
     static fetchTypes(){
-        return db.execute('SELECT * FROM tipos');
+        return db.execute('SELECT * FROM tipos ORDER BY descripcion ASC');
     }
 }

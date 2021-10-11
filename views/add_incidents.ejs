@@ -32,11 +32,12 @@
                 <select name="tipos" id="tipos">
                     <option disabled selected>Seleccione un Tipo...</option>
                     
-                    <% if (lista_lugares.length > 0) { %>
-                        <% for (let lugar of lista_lugares) { %>
-                            <option value="<%= lugar.id%>"><%= lugar.nombre%></option>
+                    <% if (lista_tipos.length > 0) { %>
+                        <% for (let tipo of lista_tipos) { %>
+                            <option value="<%= tipo.id%>"><%= tipo.descripcion%></option>
                         <%}%>
                     <%}%>
+
                 </select>
                 <a class="waves-effect waves-light btn" id="add_type" href="/types/addType">
                     Agregar Tipo

@@ -1,18 +1,17 @@
 const db = require('../util/database');
 
 module.exports = class Incidente {
-    constructor(mi_hora, mi_fecha, mi_lugar, mi_tipo) {
-        this.hora = mi_hora;
-        this.fecha = mi_fecha;
+    constructor(created_at, mi_lugar, mi_tipo) {
+        this.created_at = created_at;
         this.lugar = mi_lugar;
         this.tipo = mi_tipo;
     }
     save() {
-        return db.execute('INSERT INTO incidentes (hora, fecha, lugar_incidente, tipo_incidente) VALUES (?, ?, ?, ?)',
-            [this.hora, this.fecha, this.lugar, this.tipo]);
+        return db.execute('INSERT INTO incidentes (lugar_incidente, tipo_incidente) VALUES (?, ?)',
+            [this.lugar, this.tipo]);
     }
     static fetchAll() {
-        return db.execute('SELECT* FROM incidentes I, lugares L, tipos T WHERE I.lugar_incidente = L.id AND I.tipo_incidente = T.id ORDER BY fecha DESC')
+        return db.execute('SELECT I.created_at, L.nombre, T.descripcion FROM incidentes I, lugares L, tipos T WHERE I.lugar_incidente = L.id AND I.tipo_incidente = T.id ORDER BY I.created_at DESC')
     }
     
     static fetchPlaces(){

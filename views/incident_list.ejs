@@ -6,8 +6,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Hora</th>
+                        <th>Fecha/Hora</th>
                         <th>Lugar</th>
                         <th>Tipo</th>
                     </tr>
@@ -16,8 +15,7 @@
                     <% if (lista_incidentes.length> 0) { %>
                         <% for (let incidente of lista_incidentes) { %>
                             <tr>
-                                <td><%= incidente.fecha%></td>
-                                <td><%= incidente.hora%></td>
+                                <td><%= incidente.created_at%></td>
                                 <td><%= incidente.nombre%></td>
                                 <td><%= incidente.descripcion%></td>
                             </tr>

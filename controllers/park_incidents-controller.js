@@ -39,7 +39,7 @@ exports.getIncident = (request, response, next) => {
 };
 
 exports.postIncident = (request, response, next) => {
-    const incidente = new Incident(request.body.hora, request.body.fecha, request.body.lugares, request.body.tipos);
+    const incidente = new Incident(request.body.created_at, request.body.lugares, request.body.tipos);
     incidente.save()
         .then(([rows, fieldData]) => {
             response.status(302).redirect('/park_incidents/list');

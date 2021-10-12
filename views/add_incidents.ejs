@@ -31,7 +31,6 @@
                 <label for="tipos">Tipo de Incidente: </label>
                 <select name="tipos" id="tipos">
                     <option disabled selected>Seleccione un Tipo...</option>
-                    
                     <% if (lista_tipos.length > 0) { %>
                         <% for (let tipo of lista_tipos) { %>
                             <option value="<%= tipo.id%>"><%= tipo.descripcion%></option>

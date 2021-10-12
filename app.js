@@ -27,12 +27,11 @@ app.use('/places', rutasLugar);
 app.use('/types', rutasTipo);
 
 app.use((request, response, next) => {
-    console.log('Segundo middleware!');
-    response.status(404).send('Recurso no encontrado');
+    response.status(404).render('404');
 });
 
 app.use('/error', (request, response, next) => {
-    response.status(500).send('Internal Server Error');
+    response.status(500).render('500');
 });
 
 app.listen(3000);

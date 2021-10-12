@@ -27,7 +27,6 @@ exports.addIncident = (request, response, next) => {
 exports.getIncident = (request, response, next) => {
     Incident.fetchAll()
         .then(([rows, fieldData]) => {
-            console.log(rows);
             response.render('incident_list',  {
                 titulo: "Listado de Incidentes",
                 lista_incidentes: rows,
@@ -39,12 +38,11 @@ exports.getIncident = (request, response, next) => {
         });
 };
 
-exports.postAdd = (request, response, next) => {
-    response.setHeader('Set-Cookie', 'ultimo_platillo='+request.body.nombre+ ';HttpOnly');
-    const lugar = new Platillo(request.body.nombre, request.body.descripcion, request.body.imagen);
-    platillo.save()
+exports.postIncident = (request, response, next) => {
+    const incidente = new Incident(request.body.hora, request.body.fecha, request.body.lugares, request.body.tipos);
+    incidente.save()
         .then(([rows, fieldData]) => {
-            response.status(302).redirect('/menu/list');
+            response.status(302).redirect('/park_incidents/list');
         })
         .catch(err => {
             console.log(err);

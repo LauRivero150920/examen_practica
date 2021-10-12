@@ -16,6 +16,6 @@ label{
     font-weight: bold;
 }
 
-#drop1, #drop2, #add_place, #add_type{
+#add_place, #add_type, #return{
     background-color: rgb(187, 157, 60);
 }

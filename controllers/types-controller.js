@@ -13,7 +13,7 @@ exports.postType = (request, response, next) => {
     const tipo = new Tipo(request.body.descripcion);
     tipo.save()
         .then(([rows, fieldData]) => {
-            response.status(302).redirect('/park_incidents/list');
+            response.status(302).redirect('/park_incidents/add');
         })
         .catch(err => {
             console.log(err);

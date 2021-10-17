@@ -8,7 +8,8 @@ exports.addIncident = (request, response, next) => {
             Incident.fetchTypes()
                 .then(([rows2, fieldData]) => {
                     response.render('add_incidents',  {
-                        titulo: "Agregar Incidente",
+                        titulo_1: "Agregar Incidente",
+                        titulo_2: "Listado de Incidentes",
                         lista_lugares: rows1,
                         lista_tipos: rows2,
                     });
@@ -27,25 +28,27 @@ exports.addIncident = (request, response, next) => {
 exports.getIncident = (request, response, next) => {
     Incident.fetchAll()
         .then(([rows, fieldData]) => {
-            response.render('incident_list',  {
-                titulo: "Listado de Incidentes",
+            /*response.render('incident_list',  {
+                titulo_2: "Listado de Incidentes",
                 lista_incidentes: rows,
-            });
+            });*/
+            console.log("Exitoso 🚀");
+            response.status(200).json({rows});
         })
         .catch(err => {
             console.log(err);
-            response.status(302).redirect('/error');
+            response.status(302).json({error: err});
         });
 };
 
 exports.postIncident = (request, response, next) => {
     const incidente = new Incident(request.body.created_at, request.body.lugares, request.body.tipos);
-    incidente.save()
+    incidente.save(request.body.lugar, request.body.tipo)
         .then(([rows, fieldData]) => {
-            response.status(302).redirect('/park_incidents/list');
+            response.status(200).json({rows});
         })
         .catch(err => {
             console.log(err);
-            response.status(302).redirect('/error');
+            response.status(302).json({error: err});
         });
 };

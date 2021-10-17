@@ -6,9 +6,9 @@ module.exports = class Incidente {
         this.lugar = mi_lugar;
         this.tipo = mi_tipo;
     }
-    save() {
+    save(lugar, tipo) {
         return db.execute('INSERT INTO incidentes (lugar_incidente, tipo_incidente) VALUES (?, ?)',
-            [this.lugar, this.tipo]);
+            [lugar, tipo]);
     }
     static fetchAll() {
         return db.execute('SELECT I.created_at, L.nombre, T.descripcion FROM incidentes I, lugares L, tipos T WHERE I.lugar_incidente = L.id AND I.tipo_incidente = T.id ORDER BY I.created_at DESC')

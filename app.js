@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
+const csrf = require('csurf');
+const csrfProtection = csrf();
+
 //! rutas
 const rutasParque = require('./routes/park_incidents-routes');
 const rutasLugar = require('./routes/places-routes');
@@ -19,6 +22,8 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, 'public'))); 
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 app.use(cookieParser());
 
 //! rutas

@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.get('/add', incidentsController.addIncident);
 
-router.get('/list', incidentsController.getIncident);
-
 router.post('/add', incidentsController.postIncident);
+
+router.get('/list', incidentsController.getIncident);
 
 module.exports = router;

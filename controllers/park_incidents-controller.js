@@ -30,14 +30,13 @@ exports.getIncident = (request, response, next) => {
     Incident.fetchAll()
         .then(([rows, fieldData]) => {
             console.log("Get Exitoso 🚀");
-            response.status(200).json({rows});
+            // response.status(200).json({rows});
             Incident.sumIncidents()
                 .then(([sum, fieldData]) => {
-                    console.log("Suma Exitosa 🚀");
-                    console.log(sum[0][0].total_incidentes + " 🍦");
+                    console.log("Suma Exitosa 🤓");
                     suma_incidentes = sum[0][0].total_incidentes;
-                    console.log(suma_incidentes + " 🐱")
-                    response.status(200).json(suma_incidentes);
+                    response.status(200).json({sum: suma_incidentes, rows});
+                    
                 })
                 .catch(err => {
                     console.log(err);

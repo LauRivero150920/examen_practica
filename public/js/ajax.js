@@ -13,6 +13,10 @@ document.getElementById("enviar_ajax").onclick = () => {
             return result.json(); //Regresa otra promesa
         }).then(data => {
             console.log("Se pudo insertar todo 😎");
+            M.toast({
+                html: 'Reporte Agregado con éxito 😄',
+                classes: "teal darken-3"
+            });
             fetch('/park_incidents/list', {
                 method: 'GET',
                 headers: {
@@ -21,21 +25,21 @@ document.getElementById("enviar_ajax").onclick = () => {
                 }).then(result => {
                     return result.json(); //Regresa otra promesa
                 }).then(data => {
-                    data = data.rows;
+                    datos = data.rows;
                     sum  = data.sum;
                     let tabla = "";
-                    let alert_cont = ""
-                    let sum_incidents = ""
-                    sum_incidents += '<h6>Total incidentes: ' + data.sum + ' </h6>';
-                    if(data.length > 0){
-                        for(let incidente of data){
+                    let alert_cont = "";
+                    let sum_incidents = "";
+                    sum_incidents += '<h6>Total incidentes: ' + sum + ' </h6>';
+                    if(datos.length > 0){
+                        for(let incidente of datos){
                             tabla += '<tr>';
                             tabla += '<td>' + incidente.created_at +'</td>';
                             tabla += '<td>' + incidente.nombre + '</td>';
                             tabla += '<td>' + incidente.descripcion + '</td>';
                             tabla +='</tr>';
                         }
-                        alert_cont += '<br><span>Información agregada con éxito 😄</span>'
+                        //alert_cont += '<br><span>Información agregada con éxito 😄</span>'
                     }
                     else{
                         tabla += '<tr>';
@@ -56,7 +60,7 @@ document.getElementById("enviar_ajax").onclick = () => {
     });
 };
 
-document.getElementById("mostar_tabla").onclick = () => {
+document.getElementById("mostrar_tabla").onclick = () => {
     console.log("Se presionó el botón 😄");
     fetch('/park_incidents/list', {
         method: 'GET',
@@ -66,16 +70,15 @@ document.getElementById("mostar_tabla").onclick = () => {
         }).then(result => {
             return result.json(); //Regresa otra promesa
         }).then(data => {
-            data = data.rows;
-            sum = data.suma_incidentes;
-            console.log(sum + '🧊')
+            datos = data.rows;
+            sum = data.sum;
             let tabla = "";
             let sum_incidents = "";
             sum_incidents += '<h6>Total incidentes: ' + sum + '</h6>';
-            if(data.length > 0){
-                for(let incidente of data){
+            if(datos.length > 0){
+                for(let incidente of datos){
                     tabla += '<tr>';
-                    tabla += '<td>' + incidente.created_at +'</td>';
+                    tabla += '<td>' + new Date(incidente.created_at) +'</td>';
                     tabla += '<td>' + incidente.nombre + '</td>';
                     tabla += '<td>' + incidente.descripcion + '</td>';
                     tabla +='</tr>';

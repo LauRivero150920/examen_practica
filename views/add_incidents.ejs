@@ -37,6 +37,12 @@
                 <a class="waves-effect waves-light btn" id="enviar_ajax">
                     Enviar
                 </a>
+
+                <br><br>
+                <a class="waves-effect waves-light btn" id="mostar_tabla">
+                    Mostrar Tabla
+                </a>
+
                 <div id="alert">
 
                 </div>
@@ -50,6 +56,9 @@
     <h3 style="text-align: center;"><%= titulo_2 %></h3>
         <div class="row">
             <div class="col s12 m12 l12" >
+                <div id="sum_incidents_cont">
+
+                </div>
                 <table id="lista_incidentes" style="text-align: center;">
                     <thead>
                         <tr>
@@ -58,6 +67,9 @@
                             <th>Tipo</th>
                         </tr>
                     </thead>
+                    <tbody id="table_body">
+
+                    </tbody>
                 </table>
             </div>
         </div>

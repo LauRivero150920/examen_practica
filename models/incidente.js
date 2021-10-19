@@ -21,4 +21,8 @@ module.exports = class Incidente {
     static fetchTypes(){
         return db.execute('SELECT * FROM tipos ORDER BY descripcion ASC');
     }
+    
+    static sumIncidents(){
+        return db.execute('CALL suma_incidentes()');
+    }
 }

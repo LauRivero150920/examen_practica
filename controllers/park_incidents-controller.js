@@ -1,6 +1,7 @@
 const { fetchAll } = require('../models/incidente'); // Imortar el fetch all del modelo del modelo
 const Incident = require('../models/incidente');
 const { fetchPlaces } = require('../models/incidente');
+let suma_incidentes;
 
 exports.addIncident = (request, response, next) => {
     Incident.fetchPlaces()
@@ -28,12 +29,20 @@ exports.addIncident = (request, response, next) => {
 exports.getIncident = (request, response, next) => {
     Incident.fetchAll()
         .then(([rows, fieldData]) => {
-            /*response.render('incident_list',  {
-                titulo_2: "Listado de Incidentes",
-                lista_incidentes: rows,
-            });*/
-            console.log("Exitoso 🚀");
+            console.log("Get Exitoso 🚀");
             response.status(200).json({rows});
+            Incident.sumIncidents()
+                .then(([sum, fieldData]) => {
+                    console.log("Suma Exitosa 🚀");
+                    console.log(sum[0][0].total_incidentes + " 🍦");
+                    suma_incidentes = sum[0][0].total_incidentes;
+                    console.log(suma_incidentes + " 🐱")
+                    response.status(200).json(suma_incidentes);
+                })
+                .catch(err => {
+                    console.log(err);
+                    response.status(302).json({error: err});
+                })
         })
         .catch(err => {
             console.log(err);

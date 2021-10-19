@@ -22,10 +22,12 @@ document.getElementById("enviar_ajax").onclick = () => {
                     return result.json(); //Regresa otra promesa
                 }).then(data => {
                     data = data.rows;
+                    sum  = data.sum;
                     let tabla = "";
                     let alert_cont = ""
+                    let sum_incidents = ""
+                    sum_incidents += '<span>Total incidentes: ' + data.sum + ' </span>';
                     if(data.length > 0){
-                        tabla += '<tbody>';
                         for(let incidente of data){
                             tabla += '<tr>';
                             tabla += '<td>' + incidente.created_at +'</td>';
@@ -33,7 +35,6 @@ document.getElementById("enviar_ajax").onclick = () => {
                             tabla += '<td>' + incidente.descripcion + '</td>';
                             tabla +='</tr>';
                         }
-                        tabla += '</tbody>';
                         alert_cont += '<br><span>Información agregada con éxito 😄</span>'
                     }
                     else{
@@ -44,12 +45,53 @@ document.getElementById("enviar_ajax").onclick = () => {
                         tabla +='</tr>';
                         tabla += '</tbody>';
                     }
-                    document.getElementById("lista_incidentes").innerHTML = tabla;
+                    document.getElementById("table_body").innerHTML = tabla;
                     document.getElementById("alert").innerHTML = alert_cont;
+                    document.getElementById("sum_incidents_cont").innerHTML = sum_incidents;
                 }).catch(err => {
                     console.log(err);
                 });
         }).catch(err => {
             console.log(err);
     });
+};
+
+document.getElementById("mostar_tabla").onclick = () => {
+    console.log("Se presionó el botón 😄");
+    fetch('/park_incidents/list', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }   
+        }).then(result => {
+            return result.json(); //Regresa otra promesa
+        }).then(data => {
+            data = data.rows;
+            sum = data.suma_incidentes;
+            console.log(sum + '🧊')
+            let tabla = "";
+            let sum_incidents = "";
+            sum_incidents += '<span>Total incidentes: ' + sum + ' </span>';
+            if(data.length > 0){
+                for(let incidente of data){
+                    tabla += '<tr>';
+                    tabla += '<td>' + incidente.created_at +'</td>';
+                    tabla += '<td>' + incidente.nombre + '</td>';
+                    tabla += '<td>' + incidente.descripcion + '</td>';
+                    tabla +='</tr>';
+                }
+            }
+            else{
+                tabla += '<tr>';
+                tabla += '<td>--------</td>';
+                tabla += '<td>--------</td>';
+                tabla += '<td>--------</td>';
+                tabla +='</tr>';
+                tabla += '</tbody>';
+            }
+            document.getElementById("table_body").innerHTML = tabla;
+            document.getElementById("sum_incidents_cont").innerHTML = sum_incidents;
+        }).catch(err => {
+            console.log(err);
+        });
 };

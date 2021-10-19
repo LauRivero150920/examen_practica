@@ -17,9 +17,19 @@ label{
 }
 
 #add_place, #add_type, #return{
-    background-color: rgb(187, 157, 60);
+    background-color: rgb(209, 176, 68);
 }
 
 #mostar_tabla{
     background-color: rgb(111, 180, 97);
+}
+
+h6{
+    background-color: rgb(193, 199, 201);
+    width: 15%;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    height: 25px;
+    font-weight: bold;
 }

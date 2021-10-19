@@ -26,7 +26,7 @@ document.getElementById("enviar_ajax").onclick = () => {
                     let tabla = "";
                     let alert_cont = ""
                     let sum_incidents = ""
-                    sum_incidents += '<span>Total incidentes: ' + data.sum + ' </span>';
+                    sum_incidents += '<h6>Total incidentes: ' + data.sum + ' </h6>';
                     if(data.length > 0){
                         for(let incidente of data){
                             tabla += '<tr>';
@@ -71,7 +71,7 @@ document.getElementById("mostar_tabla").onclick = () => {
             console.log(sum + '🧊')
             let tabla = "";
             let sum_incidents = "";
-            sum_incidents += '<span>Total incidentes: ' + sum + ' </span>';
+            sum_incidents += '<h6>Total incidentes: ' + sum + '</h6>';
             if(data.length > 0){
                 for(let incidente of data){
                     tabla += '<tr>';
